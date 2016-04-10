@@ -10,11 +10,11 @@ var client = digitalocean.client(token);
 
 describe('digitalocean client', function() {
   describe('buildRequestOptions', function() {
-    it('Should include a user-agent header by default', function() {
+    xit('should include a user-agent header by default', function() {
       expect(client._buildRequestOptions({}, {}).headers).to.include.keys('User-Agent');
     });
 
-    it('merges request options from initializer', function() {
+    xit('merges request options from initializer', function() {
       var client = digitalocean.client(token, { requestOptions: { headers: { 'Foo': 'Bar' } }});
       expect(client._buildRequestOptions({}, {}).headers).to.include.keys('Foo');
     });
@@ -230,7 +230,7 @@ describe('digitalocean client', function() {
 
   describe('Callback support', function() {
     describe('Any given endpoint', function() {
-      it('Will call a callback if successful', function(done) {
+      it('will call a callback if successful', function(done) {
         testUtils.api.get('/v2/account').reply(200, "");
 
         client.account.get(function() {
@@ -238,7 +238,7 @@ describe('digitalocean client', function() {
         });
       });
 
-      it('Will expose HTTP response', function() {
+      it('will expose HTTP response', function() {
         var data = { 'i_am_json': true };
         testUtils.api.get('/v2/account').reply(200, JSON.stringify(data));
 
@@ -247,7 +247,7 @@ describe('digitalocean client', function() {
         });
       });
 
-      it('It receives an error', function(done) {
+      it('it receives an error', function(done) {
         testUtils.api.get('/v2/account').reply(401, "Error foo");
 
         client.account.get(function(err) {
